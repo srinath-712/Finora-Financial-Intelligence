@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Finora Financial Intelligence"
+description = "A polished Gen-Z financial intelligence workspace combining personal finance management with Indian market analysis, portfolio insights, scenario modeling, and an AI financial assistant using realistic local mock data."
+version = "1.0.0"
+id = "artifacts/finora-financial-intelligence"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21051
+
+[services.development]
+run = "pnpm --filter @workspace/finora-financial-intelligence run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/finora-financial-intelligence", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/finora-financial-intelligence/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21051"
+BASE_PATH = "/"
