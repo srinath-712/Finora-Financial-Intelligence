@@ -171,6 +171,27 @@ Open `http://localhost:5173` in your browser.
 # Full TypeScript verification across workspace (0 errors)
 pnpm --filter @workspace/finora-financial-intelligence run typecheck
 
-# Production build into dist/public
+# Production build into dist
 pnpm --filter @workspace/finora-financial-intelligence run build
+```
+
+---
+
+## ☁️ Deploying to Vercel
+
+Finora is pre-configured for seamless Vercel deployment via `vercel.json`.
+
+### Option A: Import Git Repository (Recommended)
+1. Push your repository to **GitHub / GitLab / Bitbucket**.
+2. Go to [Vercel Dashboard](https://vercel.com/new) and import your repository.
+3. Vercel will automatically detect `vercel.json` and configure:
+   - **Framework Preset**: Vite
+   - **Build Command**: `pnpm --filter @workspace/finora-financial-intelligence run build`
+   - **Output Directory**: `artifacts/finora-financial-intelligence/dist`
+4. Click **Deploy**.
+
+### Option B: Vercel CLI
+```bash
+npm i -g vercel
+vercel
 ```
